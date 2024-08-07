@@ -22,6 +22,10 @@ class Empresas(models.Model):
         ('AT', 'Agrotech'),
         
     )
+    publico_alvo_p = (
+        ('B2B','B2B (Business To Business)'),
+        ('B2C','B2C (Business To Client)'),
+    )
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     nome = models.CharField(max_length=50)
     cnpj = models.CharField(max_length=30)
@@ -32,7 +36,7 @@ class Empresas(models.Model):
     percentual_equity = models.IntegerField() # Percentual esperado
     estagio = models.CharField(max_length=4, choices=estagio_choices, default='I')
     area = models.CharField(max_length=3, choices=area_choices)
-    publico_alvo = models.CharField(max_length=3)
+    publico_alvo = models.CharField(max_length=3, choices=publico_alvo_p)
     valor = models.DecimalField(max_digits=9, decimal_places=2) # Valor total a ser vendido
     pitch = models.FileField(upload_to='pitchs')
     logo = models.FileField(upload_to='logo')
